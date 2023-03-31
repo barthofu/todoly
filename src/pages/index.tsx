@@ -1,12 +1,25 @@
 import { trpc } from '@lib/trpc'
 import type { NextPage } from 'next'
 
-import { Box } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import { DefaultLayout } from '@components/layouts'
 
 const HomePage: NextPage = () => {
 
-	const { data } = trpc.helloWorld.helloWorldWithParams.useQuery({ name: 'everyone' })
+	const tasks = trpc.tasks.getAll.useQuery()
+	const createTaskMutation = trpc.tasks.create.useMutation()
+
+	const createTask = async () => {
+
+		await createTaskMutation.mutateAsync({
+			data: {
+				title: 'Test',
+				description: 'Test',
+			}
+		})
+		
+		tasks.refetch()
+	}
 
 	return (<>
 
@@ -15,8 +28,12 @@ const HomePage: NextPage = () => {
 		>
 
 			<Box>
-				{data?.message}
+				{JSON.stringify(tasks.data)}
 			</Box>
+
+			<Button onClick={createTask}>
+				Click me
+			</Button>
 
 		</DefaultLayout>		
 	
