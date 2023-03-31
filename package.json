@@ -1,0 +1,39 @@
+{
+  "name": "next-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "plop": "plop --plopfile ./cli/plopfile.js"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.3.6",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@fontsource/open-sans": "^4.5.13",
+    "@fontsource/raleway": "^4.5.11",
+    "@tanstack/react-query": "^4.16.1",
+    "@trpc/client": "^10.0.0-rc.8",
+    "@trpc/next": "^10.0.0-rc.8",
+    "@trpc/react-query": "^10.0.0-rc.8",
+    "@trpc/server": "^10.0.0-rc.8",
+    "framer-motion": "^7.6.1",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.55.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.2",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "plop": "^2.3.0",
+    "typescript": "4.8.4"
+  }
+}

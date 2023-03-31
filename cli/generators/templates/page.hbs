@@ -1,0 +1,41 @@
+import type { NextPage{{#ifEquals renderType 'static'}}, GetStaticProps{{/ifEquals}}{{#ifEquals renderType 'server'}}, GetServerSideProps{{/ifEquals}} } from 'next'
+
+import { Box } from '@chakra-ui/react'
+import { DefaultLayout } from '@components/layouts'
+
+const {{pascalCase name}}Page: NextPage = () => {
+
+	return (<>
+
+		<DefaultLayout
+			title='{{pascalCase name}}'
+		>
+
+			<Box>
+				Hello world from {{route}}
+			</Box>
+
+		</DefaultLayout>		
+	
+	</>)
+}
+{{#ifEquals renderType 'static'}}
+
+export const getStaticProps: GetStaticProps = async () => {
+
+	return {
+		props: {}
+	}
+}
+{{/ifEquals}}
+{{#ifEquals renderType 'server'}}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+	return {
+		props: {}
+	}
+}
+{{/ifEquals}}
+
+export default {{pascalCase name}}Page
