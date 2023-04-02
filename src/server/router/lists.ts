@@ -1,17 +1,17 @@
 import { prisma } from '@server/prisma'
 import { publicProcedure, router } from '@server/trpc'
 import { TRPCError } from '@trpc/server'
-import { TaskCreateOneSchema } from 'prisma/generated/schemas'
+import { ListCreateOneSchema } from 'prisma/generated/schemas'
 import { z } from 'zod'
 
-export const tasksRouter = router({
+export const listsRouter = router({
 
     getAll: publicProcedure
         .query(async () => {
             
-            const tasks = await prisma.task.findMany()
+            const lists = await prisma.list.findMany()
             
-            return tasks
+            return lists
         }),
 
     get: publicProcedure
@@ -20,31 +20,31 @@ export const tasksRouter = router({
         }))
         .query(async ({ input }) => {
 
-            const task = await prisma.task.findUnique({
+            const list = await prisma.list.findUnique({
                 where: {
                     id: input.id
                 }
             })
 
-            if (!task) {
+            if (!list) {
                 throw new TRPCError({
                     code: 'NOT_FOUND',
                     message: 'Task not found'
                 })
             }
 
-            return task
+            return list
         }),
 
     create: publicProcedure
-        .input(TaskCreateOneSchema)
+        .input(ListCreateOneSchema)
         .mutation(async ({ input }) => {
                 
-            const task = await prisma.task.create({
+            const list = await prisma.list.create({
                 data: input.data
             })
 
-            return task
+            return list
         })
 
 })

@@ -21,6 +21,10 @@ const styles = {
             textDecoration: 'none',
         },
 
+        'ul': {
+            listStyle: 'none',
+        },
+
     })
 }
 
