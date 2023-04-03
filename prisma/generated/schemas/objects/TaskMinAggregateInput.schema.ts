@@ -6,11 +6,11 @@ const Schema: z.ZodType<Prisma.TaskMinAggregateInputType> = z
   .object({
     id: z.literal(true).optional(),
     title: z.literal(true).optional(),
-    description: z.literal(true).optional(),
+    notes: z.literal(true).optional(),
     date: z.literal(true).optional(),
     time: z.literal(true).optional(),
     color: z.literal(true).optional(),
-    done: z.literal(true).optional(),
+    completed: z.literal(true).optional(),
     archived: z.literal(true).optional(),
     parentId: z.literal(true).optional(),
     listId: z.literal(true).optional(),

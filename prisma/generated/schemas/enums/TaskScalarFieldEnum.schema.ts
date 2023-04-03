@@ -3,11 +3,11 @@ import { z } from 'zod';
 export const TaskScalarFieldEnumSchema = z.enum([
   'id',
   'title',
-  'description',
+  'notes',
   'date',
   'time',
   'color',
-  'done',
+  'completed',
   'archived',
   'parentId',
   'listId',

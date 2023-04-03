@@ -7,6 +7,7 @@ const Schema: z.ZodType<Prisma.ListMinAggregateInputType> = z
     id: z.literal(true).optional(),
     title: z.literal(true).optional(),
     description: z.literal(true).optional(),
+    position: z.literal(true).optional(),
   })
   .strict();
 

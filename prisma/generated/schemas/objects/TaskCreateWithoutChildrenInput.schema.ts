@@ -7,11 +7,11 @@ import type { Prisma } from '@prisma/client';
 const Schema: z.ZodType<Prisma.TaskCreateWithoutChildrenInput> = z
   .object({
     title: z.string(),
-    description: z.string().optional().nullable(),
-    date: z.date().optional().nullable(),
-    time: z.date().optional().nullable(),
+    notes: z.string().optional().nullable(),
+    date: z.string().optional().nullable(),
+    time: z.string().optional().nullable(),
     color: z.string().optional().nullable(),
-    done: z.boolean().optional(),
+    completed: z.boolean().optional(),
     archived: z.boolean().optional(),
     parent: z
       .lazy(() => TaskCreateNestedOneWithoutChildrenInputObjectSchema)

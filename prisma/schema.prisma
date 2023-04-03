@@ -15,14 +15,14 @@ datasource db {
 }
 
 model Task {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String?
-  date        DateTime?
-  time        DateTime?
-  color       String?
-  done        Boolean   @default(false)
-  archived    Boolean   @default(false)
+  id        Int     @id @default(autoincrement())
+  title     String
+  notes     String?
+  date      String?
+  time      String?
+  color     String?
+  completed Boolean @default(false)
+  archived  Boolean @default(false)
 
   parentId Int?
   parent   Task?  @relation("ParentChild", fields: [parentId], references: [id])
@@ -36,6 +36,7 @@ model List {
   id          Int     @id @default(autoincrement())
   title       String
   description String?
+  position    Int     @unique
 
   tasks Task[]
 }

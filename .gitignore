@@ -3,6 +3,7 @@
 # data
 *.db
 *.sqlite
+*db-journal
 
 # dependencies
 /node_modules

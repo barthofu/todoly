@@ -9,7 +9,10 @@ export default {
 
 export const Primary: StoryObj<typeof List> = {
     args: {
-        title: 'Test',
+        title: {
+            text: 'Test',
+            highlighted: false
+        },
         tasks: [
             {
                 id: 1,

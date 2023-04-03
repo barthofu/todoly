@@ -2,11 +2,11 @@
 CREATE TABLE "Task" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
-    "description" TEXT,
-    "date" DATETIME,
-    "time" DATETIME,
+    "notes" TEXT,
+    "date" TEXT,
+    "time" TEXT,
     "color" TEXT,
-    "done" BOOLEAN NOT NULL DEFAULT false,
+    "completed" BOOLEAN NOT NULL DEFAULT false,
     "archived" BOOLEAN NOT NULL DEFAULT false,
     "parentId" INTEGER,
     "listId" INTEGER,
@@ -18,5 +18,9 @@ CREATE TABLE "Task" (
 CREATE TABLE "List" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
-    "description" TEXT
+    "description" TEXT,
+    "position" INTEGER NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "List_position_key" ON "List"("position");

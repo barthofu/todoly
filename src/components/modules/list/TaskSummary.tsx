@@ -13,10 +13,10 @@ export const TaskSummary: React.FC<TaskSummaryProps> = (props) => {
 
             {/* Badge */}
             <Box
-                w="1rem"
-                h="1rem"
+                w=".75rem"
+                h=".75rem"
                 borderRadius="50%"
-                backgroundColor={'black'}
+                backgroundColor={props.task.color || 'gray'}
             />
 
             {/* Title */}

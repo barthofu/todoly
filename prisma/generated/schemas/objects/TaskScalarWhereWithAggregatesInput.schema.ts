@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { IntWithAggregatesFilterObjectSchema } from './IntWithAggregatesFilter.schema';
 import { StringWithAggregatesFilterObjectSchema } from './StringWithAggregatesFilter.schema';
 import { StringNullableWithAggregatesFilterObjectSchema } from './StringNullableWithAggregatesFilter.schema';
-import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNullableWithAggregatesFilter.schema';
 import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter.schema';
 import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAggregatesFilter.schema';
 
@@ -32,7 +31,7 @@ const Schema: z.ZodType<Prisma.TaskScalarWhereWithAggregatesInput> = z
     title: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
-    description: z
+    notes: z
       .union([
         z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
         z.string(),
@@ -41,15 +40,15 @@ const Schema: z.ZodType<Prisma.TaskScalarWhereWithAggregatesInput> = z
       .nullable(),
     date: z
       .union([
-        z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
-        z.date(),
+        z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+        z.string(),
       ])
       .optional()
       .nullable(),
     time: z
       .union([
-        z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
-        z.date(),
+        z.lazy(() => StringNullableWithAggregatesFilterObjectSchema),
+        z.string(),
       ])
       .optional()
       .nullable(),
@@ -60,7 +59,7 @@ const Schema: z.ZodType<Prisma.TaskScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
-    done: z
+    completed: z
       .union([z.lazy(() => BoolWithAggregatesFilterObjectSchema), z.boolean()])
       .optional(),
     archived: z

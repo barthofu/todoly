@@ -36,6 +36,9 @@ const Schema: z.ZodType<Prisma.ListScalarWhereWithAggregatesInput> = z
       ])
       .optional()
       .nullable(),
+    position: z
+      .union([z.lazy(() => IntWithAggregatesFilterObjectSchema), z.number()])
+      .optional(),
   })
   .strict();
 

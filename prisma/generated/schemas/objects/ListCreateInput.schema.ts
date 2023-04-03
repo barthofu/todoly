@@ -7,6 +7,7 @@ const Schema: z.ZodType<Prisma.ListCreateInput> = z
   .object({
     title: z.string(),
     description: z.string().optional().nullable(),
+    position: z.number(),
     tasks: z
       .lazy(() => TaskCreateNestedManyWithoutListInputObjectSchema)
       .optional(),

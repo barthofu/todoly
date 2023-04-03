@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { IntFilterObjectSchema } from './IntFilter.schema';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';
-import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { BoolFilterObjectSchema } from './BoolFilter.schema';
 import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 import { TaskRelationFilterObjectSchema } from './TaskRelationFilter.schema';
@@ -34,23 +33,23 @@ const Schema: z.ZodType<Prisma.TaskWhereInput> = z
     title: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
-    description: z
+    notes: z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
     date: z
-      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
     time: z
-      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
     color: z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
-    done: z
+    completed: z
       .union([z.lazy(() => BoolFilterObjectSchema), z.boolean()])
       .optional(),
     archived: z

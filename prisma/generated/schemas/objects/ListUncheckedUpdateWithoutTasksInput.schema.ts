@@ -26,6 +26,12 @@ const Schema: z.ZodType<Prisma.ListUncheckedUpdateWithoutTasksInput> = z
       ])
       .optional()
       .nullable(),
+    position: z
+      .union([
+        z.number(),
+        z.lazy(() => IntFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
   })
   .strict();
 

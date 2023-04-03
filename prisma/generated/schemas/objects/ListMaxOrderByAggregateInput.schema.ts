@@ -8,6 +8,7 @@ const Schema: z.ZodType<Prisma.ListMaxOrderByAggregateInput> = z
     id: z.lazy(() => SortOrderSchema).optional(),
     title: z.lazy(() => SortOrderSchema).optional(),
     description: z.lazy(() => SortOrderSchema).optional(),
+    position: z.lazy(() => SortOrderSchema).optional(),
   })
   .strict();
 

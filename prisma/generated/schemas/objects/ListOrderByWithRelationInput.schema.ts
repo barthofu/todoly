@@ -9,6 +9,7 @@ const Schema: z.ZodType<Prisma.ListOrderByWithRelationInput> = z
     id: z.lazy(() => SortOrderSchema).optional(),
     title: z.lazy(() => SortOrderSchema).optional(),
     description: z.lazy(() => SortOrderSchema).optional(),
+    position: z.lazy(() => SortOrderSchema).optional(),
     tasks: z
       .lazy(() => TaskOrderByRelationAggregateInputObjectSchema)
       .optional(),

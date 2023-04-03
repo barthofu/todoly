@@ -7,6 +7,7 @@ const Schema: z.ZodType<Prisma.ListUncheckedCreateWithoutTasksInput> = z
     id: z.number().optional(),
     title: z.string(),
     description: z.string().optional().nullable(),
+    position: z.number(),
   })
   .strict();
 

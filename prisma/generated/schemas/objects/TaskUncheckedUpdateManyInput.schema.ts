@@ -2,7 +2,6 @@ import { z } from 'zod';
 import { IntFieldUpdateOperationsInputObjectSchema } from './IntFieldUpdateOperationsInput.schema';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema';
-import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema';
 
@@ -22,7 +21,7 @@ const Schema: z.ZodType<Prisma.TaskUncheckedUpdateManyInput> = z
         z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    description: z
+    notes: z
       .union([
         z.string(),
         z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
@@ -31,15 +30,15 @@ const Schema: z.ZodType<Prisma.TaskUncheckedUpdateManyInput> = z
       .nullable(),
     date: z
       .union([
-        z.date(),
-        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional()
       .nullable(),
     time: z
       .union([
-        z.date(),
-        z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
+        z.string(),
+        z.lazy(() => NullableStringFieldUpdateOperationsInputObjectSchema),
       ])
       .optional()
       .nullable(),
@@ -50,7 +49,7 @@ const Schema: z.ZodType<Prisma.TaskUncheckedUpdateManyInput> = z
       ])
       .optional()
       .nullable(),
-    done: z
+    completed: z
       .union([
         z.boolean(),
         z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema),

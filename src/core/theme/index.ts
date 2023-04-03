@@ -4,6 +4,7 @@ import components from './components'
 import styles from './styles'
 import colors from './colors'
 import fonts from './fonts'
+import sizes from './sizes'
 
 const config: ThemeConfig = {
 
@@ -16,5 +17,6 @@ export const theme = extendTheme({
     colors,
     fonts,
     styles,
-    components
+    components,
+    sizes,
 })

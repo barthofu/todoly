@@ -32,6 +32,9 @@ const Schema: z.ZodType<Prisma.ListWhereInput> = z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
+    position: z
+      .union([z.lazy(() => IntFilterObjectSchema), z.number()])
+      .optional(),
     tasks: z.lazy(() => TaskListRelationFilterObjectSchema).optional(),
   })
   .strict();

@@ -6,6 +6,7 @@ const Schema: z.ZodType<Prisma.ListCreateWithoutTasksInput> = z
   .object({
     title: z.string(),
     description: z.string().optional().nullable(),
+    position: z.number(),
   })
   .strict();
 
