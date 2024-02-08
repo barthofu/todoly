@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { DefaultLayout } from '@components/layouts'
 import { ListSlider } from '@components/modules'
-import { getFormatedDate, getLocalizedCurrentDay, getToday, isToday } from '@core/utils/functions'
+import { getAllIntermediateDates, getFormatedDate, getLocalizedCurrentDay, getToday, isToday } from '@core/utils/functions'
 import { trpc } from '@lib/trpc'
 import dayjs from 'dayjs'
 import type { NextPage } from 'next'
@@ -11,26 +11,14 @@ const HomePage: NextPage = () => {
 
 	const columns = 5
 
-	const [currentDay, setCurrentDay] = useState(getToday())
-	const dailyLists = trpc.lists.getDailyLists.useQuery({
-		date: currentDay,
-	})
+	const [dates, setDates] = useState<string[]>(getAllIntermediateDates(
+		dayjs().subtract(2, 'day').format('YYYY-MM-DD'), 
+		dayjs().add(columns + 1, 'day').format('YYYY-MM-DD')
+	))
+
+	console.log(dates)
 
 	const customLists = trpc.lists.getAll.useQuery()
-
-	// const createTaskMutation = trpc.tasks.create.useMutation()
-
-	// const createTask = async () => {
-
-	// 	await createTaskMutation.mutateAsync({
-	// 		data: {
-	// 			title: 'Test',
-	// 			description: 'Test',
-	// 		}
-	// 	})
-		
-	// 	tasks.refetch()
-	// }
 
 	return (<>
 
@@ -40,28 +28,28 @@ const HomePage: NextPage = () => {
 
 			<Box w='100vw'>
 				<ListSlider
-					lists={dailyLists.data?.map(list => ({
-						id: list.date,
-						title: getLocalizedCurrentDay(list.date, 'fr'),
-						description: getFormatedDate(list.date),
-						highlighted: isToday(list.date),
-						tasks: list.tasks
-					})) || []}
-					current='2023-04-03'
+					dates={dates}
 					columns={columns}
 					next={(current: string) => {
 
-						const parsedCurrentDay = dayjs(current)
-						const newCurrentDay = parsedCurrentDay.add(columns + 1, 'day').format('YYYY-MM-DD') 
+						if (current === dates[dates.length - columns - 2]) {
 
-						setCurrentDay(newCurrentDay)		
+							const parsedCurrentDay = dayjs(current)
+							const newCurrentDay = parsedCurrentDay.add(columns + 1, 'day')
+
+							setDates([...dates.slice(1), newCurrentDay.format('YYYY-MM-DD')])
+						}
 					}}
 					previous={(current: string) => {
 
-						const parsedCurrentDay = dayjs(current)
-						const newCurrentDay = parsedCurrentDay.subtract(1, 'day').format('YYYY-MM-DD')
+						if (current === dates[1]) {
 
-						setCurrentDay(newCurrentDay)	
+							const parsedCurrentDay = dayjs(current)
+							const newCurrentDay = parsedCurrentDay.subtract(1, 'day').format('YYYY-MM-DD')
+
+							setDates([newCurrentDay, ...dates.slice(0, -1)])
+						}
+
 					}}
 				/>
 			</Box>

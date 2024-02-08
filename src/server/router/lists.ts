@@ -1,4 +1,4 @@
-import { getAllIntermediateDates } from '@core/utils/functions'
+import { getAllIntermediateDates, getFormatedDate, getLocalizedCurrentDay, isToday } from '@core/utils/functions'
 import { prisma } from '@server/prisma'
 import { publicProcedure, router } from '@server/trpc'
 import { TRPCError } from '@trpc/server'
@@ -51,44 +51,30 @@ export const listsRouter = router({
             return list
         }),
 
-    // Custom            
+    // Custom  
 
-    getDailyLists: publicProcedure
+    getDailyList: publicProcedure
         .input(z.object({
-            date: z.string(),
-            dayCount: z.number().default(5),
-            offset: z.number().default(1)
+            date: z.string()
         }))
         .query(async ({ input }) => {
 
-            const parsedDate = dayjs(input.date)
-            const startDate = parsedDate.subtract(input.offset - 1, 'day')
-            const endDate = parsedDate.add(input.dayCount + input.offset, 'day')
+            const { date } = input
 
             // get all tasks between start and end date
             const tasks = await prisma.task.findMany({
                 where: {
-                    date: {
-                        gte: startDate.format('YYYY-MM-DD'),
-                        lte: endDate.format('YYYY-MM-DD')
-                    }
+                    date: date
                 }
             })
 
-            // get an array of all intermediate dates between start and end date
-            const intermediateDates = getAllIntermediateDates(startDate.toDate(), endDate.toDate())
-                .map(date => dayjs(date).format('YYYY-MM-DD'))
-
-            // create an array of lists objects for each date with the tasks for that date 
-            const dailyLists = intermediateDates.map(date => ({
-                    date,
-                    tasks: tasks.filter(task => task.date === date)
-                }))
-
-            return dailyLists
-        }),
-
-
-    
+            return {
+                id: input.date,
+                title: getLocalizedCurrentDay(date, 'fr'),
+                description: getFormatedDate(date),
+                highlighted: isToday(date),
+                tasks: tasks
+            }
+        }),    
 
 })

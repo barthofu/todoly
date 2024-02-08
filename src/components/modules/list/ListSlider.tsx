@@ -7,15 +7,7 @@ import { IconType } from 'react-icons'
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 
 type ListSliderProps = {
-    lists: {
-        id: string
-        title: string
-        highlighted: boolean
-        description?: string
-        tasks: Task[]
-    }[],
-    current: string
-    // onListChange: (id: string) => void
+    dates: string[]
     columns: number
     next: (current: string) => void
     previous: (current: string) => void
@@ -23,7 +15,6 @@ type ListSliderProps = {
 
 export const ListSlider: React.FC<ListSliderProps> = (props) => {
 
-    const [lists, setLists] = React.useState(props.lists)
     const listsContainerRef = React.useRef<HTMLDivElement>(null)
 
     /**
@@ -36,24 +27,11 @@ export const ListSlider: React.FC<ListSliderProps> = (props) => {
             if (listsContainerRef.current) {
 
                 if (scroll && direction === 'left') {
-                    setLists([{
-                        id: Math.random().toString(36).substring(7),
-                        title: 'test',
-                        highlighted: false,
-                        tasks: []
-                    }, ...lists.slice(0, -1)])
+
                 }
                 else if (scroll && direction === 'right') {
-                    setLists([...lists.slice(1), {
-                        id: Math.random().toString(36).substring(7),
-                        title: 'test', 
-                        highlighted: false,
-                        tasks: []
-                    }])
+                    
                 }
-
-
-                console.log(lists)
             
                 const width = listsContainerRef.current.clientWidth / props.columns
             
@@ -86,13 +64,10 @@ export const ListSlider: React.FC<ListSliderProps> = (props) => {
                 w='100%' 
                 overflowX='hidden'
             >
-                {lists.map(list => (
+                {props.dates.map(date => (
                     <List
-                        key={list.id}
-                        title={list.title}
-                        description={list.description}
-                        highlighted={list.highlighted}
-                        tasks={list.tasks}
+                        key={date}
+                        date={date}
                     />
                 ))}
             </HStack>
